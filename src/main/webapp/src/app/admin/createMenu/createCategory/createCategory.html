@@ -1,0 +1,41 @@
+<div class="create_category">
+  <div id="form">
+    <div id="category_name">
+      <label for="category_name_input">Назовите Категорию</label>
+      <input id="category_name_input" type="text"
+             [(ngModel)]="newCategoryName">
+      <span *ngIf="categoryMessage.result===false" id="error">
+        {{categoryMessage.message}}</span>
+    </div>
+
+    <div id="category_parent">
+      <label for="category_parent_select">Выберите предка, если это необходимо</label>
+      <select id="category_parent_select" type="text"
+              [(ngModel)]="selectedCategoryName" (ngModelChange)="categorySelected()">
+        <option></option>
+        <option *ngFor="#category of categoryList">{{category.name}}</option>
+      </select>
+    </div>
+    <button (click)="addNewCategoryToList()">Добавить</button>
+    <button (click)="addCategories()">Отправить</button>
+  <span [ngClass]="creationStatusClass" id="creation_status"
+        *ngIf="creationStatusClass!=undefined">{{creationStatus.message}}</span>
+  </div>
+
+  <div id="show_panel">
+
+    <div id="parent_category" *ngIf="selectedCategory!=undefined">
+      <label>Предок:</label>
+      <span>{{selectedCategory.name}}</span>
+    </div>
+
+    <div id="descendant" *ngIf="newCategoryList.length!=0">
+      <label>Добавленные категории:</label>
+      <span *ngFor="#newCategory of newCategoryList"><div id="delete"
+                                                          (click)="removeCategoryFromList(newCategory.name)"></div>{{newCategory.name}}</span>
+    </div>
+
+  </div>
+
+</div>
+

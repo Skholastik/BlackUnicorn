@@ -1,0 +1,46 @@
+<div id="container" [ngClass]="targetClassForSideBar">
+
+  <div id="sidebar">
+    <div id="logo">Pink Unicorn</div>
+    <ul>
+      <li><a (click)="navigateMenu('Таблицы','Tables')">Таблицы</a></li>
+      <li><a href="">Статистика</a></li>
+      <li><a href="">Пользователи</a></li>
+      <li><a href="">Анализ</a></li>
+    </ul>
+  </div>
+  <header id="admin-header" [ngClass]="targetClassForHeader">
+    <div class="top-info-bar">
+      <div (click)="openCloseMenu()" id="sidebar-toggle">
+        <a>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+      </div>
+    </div>
+    <div class='breadcrumbs'>
+      <div class='inner'>
+        <ul class='cf'>
+          <li *ngFor="#path of fullPath" (click)="navigateBreadCrumbs(path)">
+            <a>
+              <span>{{path.getUniqueKey()}}</span>
+              <span>{{path.getName()}}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="actionPanel">
+      <button (click)="openCloseDropDownMenu()">+ Создать</button>
+      <div *ngIf="activeDropDownMenu" id="dropDown">
+        <span (click)="openCloseDropDownMenu()" [routerLink]="['./CreateCategory']">Категорию</span>
+        <span (click)="openCloseDropDownMenu()" [routerLink]="['./CreateCategoryAttributes']" > Товар</span>
+      </div>
+    </div>
+  </header>
+  <div class="admin-menu-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

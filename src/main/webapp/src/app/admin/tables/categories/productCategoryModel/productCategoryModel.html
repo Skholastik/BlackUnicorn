@@ -1,0 +1,28 @@
+<div id="emptyCategory" *ngIf="products==undefined">
+  <span>Данная категория пуста! Необходимо ее заполнить!</span>
+  <button (click)="startTest()">Заполнить!</button>
+</div>
+
+<div id="table_content" *ngIf="products!=undefined">
+  <input type="text" id="search_area" placeholder="Введите слово для поиска">
+  <table>
+    <thead>
+    <tr>
+      <th *ngFor="#characteristicAttribute of characteristicAttributeList">{{characteristicAttribute.name}}</th>
+    </thead>
+    <tbody>
+    <tr id="tableContent" *ngFor="#product of products; #ev = even; #od=odd"
+        [ngClass]="{evenStyle:ev,oddStyle:od}">
+      <td>{{product.id}}</td>
+      <td *ngFor="#characteristic of product.characteristicList">{{characteristic.value}}</td>
+    </tr>
+    </tbody>
+    <ul id="pageList" *ngFor="#numberOfPage of numberOfPages">
+      <li
+        (click)="setCurrentPage(numberOfPage)">{{numberOfPage}}
+      </li>
+    </ul>
+  </table>
+</div>
+
+

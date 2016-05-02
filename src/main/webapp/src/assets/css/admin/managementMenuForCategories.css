@@ -1,0 +1,117 @@
+#management_Menu {
+  float:left;
+  margin-left:40px;
+}
+
+#menu ul {
+  float:left;
+  text-align:center;
+  margin:20px 0 0;
+  padding:0;
+}
+
+#menu li {
+  box-sizing:border-box;
+  margin-right:10px;
+  display:inline-block;
+  list-style-type:none;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.6);
+  font-family:Verdana, sans-serif;
+  cursor:pointer;
+  padding:10px;
+}
+
+#menu li:hover {
+  border:2px solid #FFF;
+}
+
+#menu li:active {
+  background-color:rgba(49,188,134,0.6);
+}
+
+#nested_content {
+  overflow-y:auto;
+  float:left;
+  width:700px;
+  height:300px;
+  background-color:rgba(245,245,245,0.8);
+  margin:5px 0 0;
+}
+
+#nested_Create_Menu li {
+  margin-right:10px;
+  display:inline-block;
+  list-style-type:none;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.8);
+  font-family:Verdana, sans-serif;
+  cursor:pointer;
+  padding:15px 30px;
+}
+
+#nested_Create_Menu li:hover {
+  background-color:rgba(0,0,0,0.5);
+}
+
+#nested_Create_Menu li:active {
+  background-color:rgba(0,0,0,0.6);
+}
+
+#form_nested_Create_HighCategory {
+  float:left;
+  margin:20px;
+}
+
+#form_nested_Create_HighCategory label {
+  display:block;
+  font-family:Verdana, sans-serif;
+  font-size:1.5em;
+  color:#000;
+  margin-bottom:5px;
+}
+
+#input_text_for_HighCategory {
+  display:block;
+  width:300px;
+  height:30px;
+  margin-bottom:10px;
+  font-family:Verdana, sans-serif;
+  font-size:1.3em;
+  color:#000;
+}
+
+#form_nested_Create_HighCategory button {
+  display:block;
+  margin-bottom:30px;
+  text-align:center;
+  font-family:Verdana, sans-serif;
+  font-size:1em;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.8);
+  padding:10px 20px;
+}
+
+#highCategory_Creating_Status {
+  display:block;
+  font-family:Verdana, sans-serif;
+  font-size:1.5em;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.9);
+  padding:10px 20px;
+}
+
+#nested_SubCategories {
+  width:100%;
+  float:left;
+  margin:20px;
+}
+
+#nested_SubCategories li {
+  display:inline-block;
+  list-style-type:none;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.8);
+  font-family:Verdana, sans-serif;
+  padding:5px 10px;
+}

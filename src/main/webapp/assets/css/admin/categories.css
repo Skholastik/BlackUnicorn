@@ -1,0 +1,68 @@
+#breadCrumbs {
+}
+
+#breadCrumbs ul {
+  margin: 0 0 10px 0;
+  padding: 0;
+  display: inline-table;
+  list-style: none outside none;
+}
+
+#breadCrumbs ul li {
+  display: inline;
+}
+
+#breadCrumbs ul li:first-child a:before {
+  display: none;
+}
+
+#breadCrumbs ul li a:before {
+  border-bottom: 40px solid rgba(0, 0, 0, 0);
+  border-left: 40px solid #D4F2FF;
+  border-top: 40px solid rgba(0, 0, 0, 0);
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+#breadCrumbs ul li a:hover:after {
+  border-left-color: rgba(49, 188, 134, 0.9);
+}
+
+#breadCrumbs ul li a:after {
+  border-bottom: 40px solid rgba(0, 0, 0, 0);
+  border-left: 40px solid #3498DB;
+  border-top: 40px solid rgba(0, 0, 0, 0);
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: 0;
+  z-index: 1;
+}
+
+#breadCrumbs ul li a:hover {
+  background: none repeat scroll 0 0 rgba(49, 188, 134, 0.9);
+}
+
+#breadCrumbs ul li:first-child a {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#breadCrumbs ul li a {
+  background: none repeat scroll 0 0 #3498DB;
+  color: #FFFFFF;
+  display: block;
+  float: left;
+  font-size: 20px;
+  height: 50px;
+  margin: 0 10px 0 0;
+  padding: 30px 40px 0 60px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+

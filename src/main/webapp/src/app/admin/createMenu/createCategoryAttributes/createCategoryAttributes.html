@@ -1,0 +1,79 @@
+<div class="create_product_category_model">
+  <div>
+    <div>
+      <label>Категория:</label>
+      <select type="text" [(ngModel)]="selectedCategoryName" (ngModelChange)="categorySelected()">
+        <option></option>
+        <option *ngFor="#category of categoryList">{{category.name}}</option>
+      </select>
+       <span *ngIf="categoryMessage.result===false">
+        {{categoryMessage.message}}
+      </span>
+    </div>
+    <div>
+      Выберите или создайте характеристику:
+
+      <div>
+        <label>Характеристика:</label>
+        <select type="text" [(ngModel)]="selectedAttributeName"
+                (ngModelChange)="attributeSelected()">
+          <option></option>
+          <option *ngFor="#attribute of attributeList" [value]="attribute.name">
+            {{attribute.name}}/{{attribute.unitOfMeasurement}}</option>
+        </select>
+       <span *ngIf="attributeMessage.result===false">
+        {{attributeMessage.message}}
+      </span>
+        <button (click)="addCharacteristicToList('1')">Добавить</button>
+      </div>
+
+      <label>Название характиристики:</label>
+      <input type="text" [(ngModel)]="characteristicName">
+      <span *ngIf="characteristicMessage.result===false">
+        {{characteristicMessage.message}}
+      </span>
+    </div>
+    <div>
+      <label>Единица измерения:</label>
+      <input type="text" [(ngModel)]="unitOfMeasurement">
+      <span *ngIf="unitOfMeasurementMessage.result===false" id="error">
+        {{unitOfMeasurementMessage.message}}
+      </span>
+    </div>
+    <div>
+      <label>Тип представления:</label>
+      <select type="text" [(ngModel)]="selectedViewType" (ngModelChange)="viewSelected()">
+        <option></option>
+        <option *ngFor="#view of viewList">{{view.type}}</option>
+      </select>
+            <span *ngIf="viewMessage.result===false">
+        {{viewMessage.message}}
+      </span>
+    </div>
+  </div>
+  <button (click)="addCharacteristicToList('2')">Добавить</button>
+  <button (click)="addProductCategoryModelAttributes()">Отправить</button>
+  <span [ngClass]="creationStatusClass"
+        *ngIf="creationStatusClass!=undefined">{{creationStatus.message}}</span>
+
+  <div id="show_panel">
+    <table>
+      <thead>
+      <tr>
+        <th>Категория:</th>
+        <th>{{selectedCategoryName}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="#attribute of characteristicAttributeList; #ev = even; #od=odd"
+          [ngClass]="{evenStyle:ev,oddStyle:od}">
+        <td>{{attribute.name}}</td>
+        <td>{{attribute.unitOfMeasurement}}</td>
+        <td>{{attribute.viewType}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

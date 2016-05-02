@@ -1,0 +1,105 @@
+#emptyCategory{
+  float: left;
+  font-family: Verdana, sans-serif;
+  font-size: 25px;
+}
+
+#emptyCategory span{
+  display:block;
+  padding: 10px 30px;
+  background-color: #E4E7EA;
+}
+
+#emptyCategory button {
+  margin-top:20px;
+  padding: 10px 20px;
+  text-align:center;
+  font-family:Verdana, sans-serif;
+  font-size:20px;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.8);
+  cursor:pointer;
+}
+
+
+#table_content {
+  font-family: Verdana, sans-serif;
+  float: left;
+  width: 100%;
+
+}
+
+#search_area {
+  width: 95%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+
+  font-family: Bebas Neue, sans-serif;
+  font-size: 1.0em;
+  color: black;
+
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px 40px;
+  color: white;
+  font-size: 20px;
+  background-color: rgba(49, 188, 134, 0.8);
+}
+
+tr {
+  text-align: center;
+  font-size: 20px;
+}
+
+td{
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: rgba(49, 188, 134, 0.6);
+  color: white;
+  transition: background 0.4s linear;
+}
+
+.evenStyle {
+  background-color: rgba(245, 245, 245, 0.8);
+}
+
+.oddStyle {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#pageList ul{
+  margin-top: 10px;
+  list-style: none;
+}
+
+#pageList li{
+  display: inline-block;
+  padding: 8px 13px;
+  margin-right: 5px;
+  background-color: rgba(49, 188, 134, 0.6);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#pageList li:hover{
+  background-color: rgba(29, 41, 57, 0.7);
+}
+
+#pageList li:active{
+  background-color: rgba(49, 188, 134, 1);
+}
+
+
+
+
+

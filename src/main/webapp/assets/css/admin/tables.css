@@ -1,0 +1,39 @@
+#menu-table-content {
+  float: left;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+
+
+}
+
+#menu-table-content div {
+  box-sizing: border-box;
+  margin-right: 20px;
+  width: 200px;
+  height: 70px;
+  display: inline-block;
+  overflow: hidden;
+  background-color: rgba(49, 188, 134, 1);
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#menu-table-content div a {
+  float: left;
+  margin-top: 25px;
+  width: 100%;
+  color: white;
+}
+
+#menu-table-content div:hover {
+  border: 2px solid rgba(49, 188, 134, 1);
+  color: white;
+}
+
+#menu-table-content div:active {
+  background-color: rgba(49, 188, 134, 0.9);
+  border: 2px solid white;
+}
+
