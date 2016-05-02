@@ -44,18 +44,6 @@ export class API_Category {
     }).map(res => res.text());
   }
 
-
-  checkCategoryAttributeExistence(attributeName:string, unitOfMeasurement:string, parentCategoryId:string){
-    let params:URLSearchParams = new URLSearchParams();
-    params.set('attributeName', attributeName.toString());
-    params.set('unitOfMeasurement', unitOfMeasurement.toString());
-    params.set('parentCategoryId', parentCategoryId.toString());
-
-    return this.http.get('/api/category/checkCategoryAttributeExistence', {
-      search: params
-    }).map(res => res.text());
-  }
-
   addCategoryList(parentId:string, categoryList:Category[]) {
     let transferData:any = JSON.stringify({categoryListDTO:categoryList});
 

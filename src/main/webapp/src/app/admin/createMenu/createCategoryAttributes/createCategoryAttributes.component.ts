@@ -23,7 +23,7 @@ import {View} from '../../../globalServices/DTO/view.class';
 })
 export class CreateCategoryAttributes {
 
-  constructor(private api_Attribute:API_CharacteristicAttribute,
+  constructor(private api_CharacteristicAttribute:API_CharacteristicAttribute,
               private api_Category:API_Category,
               private api_View:API_View,
               private textFormatter:TextFormatter,
@@ -36,10 +36,10 @@ export class CreateCategoryAttributes {
 
   /** Вспомогательные объекты для трансфера */
   private selectedCategory:Category;
-  private selectedDbAttribute:CharacteristicAttribute;
-  private newAttributeName:string;
-  private newUnitOfMeasurement:string;
   private selectedView:View;
+  private selectedAttribute:CharacteristicAttribute;
+  private characteristicName:string;
+  private unitOfMeasurement:string;
   /** ------------------ */
 
 
@@ -49,16 +49,17 @@ export class CreateCategoryAttributes {
   private viewList:View[];
   private selectedViewType:string;
 
-  private attributeDbList:CharacteristicAttribute[];
-  private selectedDbAttributeName:string;
+  private attributeList:CharacteristicAttribute[];
+  private selectedAttributeName:string;
 
+
+  private productMessage:ServiceMessage = new ServiceMessage();
   private categoryMessage:ServiceMessage = new ServiceMessage();
-  private attributeDbMessage:ServiceMessage = new ServiceMessage();
-  private newAttributeNameMessage:ServiceMessage = new ServiceMessage();
-  private newAttributeUnitOfMeasurementMessage:ServiceMessage = new ServiceMessage();
-  private attributeViewTypeMessage:ServiceMessage = new ServiceMessage();
+  private attributeMessage:ServiceMessage = new ServiceMessage();
+  private characteristicMessage:ServiceMessage = new ServiceMessage();
+  private unitOfMeasurementMessage:ServiceMessage = new ServiceMessage();
+  private viewMessage:ServiceMessage = new ServiceMessage();
   private creationStatus:ServiceMessage = new ServiceMessage();
-
   private creationStatusClass:string;
 
 
@@ -97,92 +98,75 @@ export class CreateCategoryAttributes {
   }
 
   getCharacteristicAttributeList():void {
-    this.api_Attribute.getCharacteristicAttributeList().subscribe(
+    this.api_CharacteristicAttribute.getCharacteristicAttributeList().subscribe(
       data => {
         console.log(data);
-        this.attributeDbList = data;
+        this.attributeList = data;
       },
       error =>console.log(error)
     );
   }
 
-  addDbCharacteristicToList():void {
-    if (this.selectedCategory == undefined)
-      this.categoryMessage.setInnerMessage(false, 'Необходимо выбрать категорию');
-
-    if (this.selectedDbAttribute != undefined) {
-      for (var i = 0; i < this.characteristicAttributeList.length; i++) {
-        if (this.characteristicAttributeList[i].id == this.selectedDbAttribute.id) {
-          this.attributeDbMessage.setInnerMessage(false, 'В списке уже имеется данный атрибут!');
-          return;
-        }
-      }
-      this.characteristicAttributeList.push(this.selectedDbAttribute);
-      this.attributeDbMessage.setInnerMessage(true, '');
-    }
-    else
-      this.attributeDbMessage.setInnerMessage(false, 'Выберите аттрибут');
-
+  categorySelected():void {
+    this.selectedCategory = this.categoryList.find(category => category.name === this.selectedCategoryName);
   }
 
-  addNewCharacteristicToList():void {
+  viewSelected():void {
+    this.selectedView = this.viewList.find(view => view.type === this.selectedViewType);
+  }
 
-    if (this.checkAccessToCharacteristicList()) {
-      let characteristicName = this.textFormatter.wordProcessor(this.newAttributeName);
+  attributeSelected():void {
+    this.selectedAttribute = this.attributeList.find(attribute => attribute.name === this.selectedAttributeName);
+    console.log(this.selectedAttributeName);
+    console.log(this.selectedAttribute);
+  }
 
-      if (this.checkCategoryExistenceInListAndDB(characteristicName, this.newUnitOfMeasurement, this.selectedCategory.id)) {
+
+  addCharacteristicToList(call:string):void {
+    if (true) {
+      /*let characteristicName = this.textFormatter.wordProcessor(this.characteristicName);*/
+
+      if (call === '1') {
+        this.characteristicAttributeList.push(this.selectedAttribute);
+        console.log(this.selectedAttribute);
+      }
+      else {
+        /*
+         (this.checkCategoryExistenceInListAndDB(categoryName, parentId));
+         */
         let newCharacteristic = new CharacteristicAttribute();
-        newCharacteristic.name = characteristicName;
-        newCharacteristic.unitOfMeasurement = this.newUnitOfMeasurement;
+        newCharacteristic.name = this.characteristicName;
+        newCharacteristic.unitOfMeasurement = this.unitOfMeasurement;
         newCharacteristic.viewType = this.selectedViewType;
         this.characteristicAttributeList.push(newCharacteristic);
       }
+
     }
   }
 
   checkAccessToCharacteristicList():boolean {
     let result:boolean = true;
 
-    if (this.selectedCategory == undefined) {
+    if (this.characteristicName == undefined) {
       result = false;
-      this.categoryMessage.setInnerMessage(false, 'Необходимо выбрать категорию');
+      this.characteristicMessage.setInnerMessage(false, 'Необходимо назвать характеристику');
     }
-    if (this.newAttributeName == undefined || this.newAttributeName == '') {
+    if (this.unitOfMeasurement == undefined) {
       result = false;
-      this.newAttributeNameMessage.setInnerMessage(false, 'Необходимо назвать характеристику');
+      this.unitOfMeasurementMessage.setInnerMessage(false, 'Необходимо выбрать единицу измерения');
     }
-    if (this.newUnitOfMeasurement == undefined || this.newUnitOfMeasurement == '') {
+    if (this.selectedViewType == undefined) {
       result = false;
-      this.newAttributeUnitOfMeasurementMessage.setInnerMessage(false, 'Необходимо выбрать единицу измерения');
+      this.viewMessage.setInnerMessage(false, 'Необходимо выбрать представление');
     }
-    if (this.selectedView == undefined) {
-      result = false;
-      this.attributeViewTypeMessage.setInnerMessage(false, 'Необходимо выбрать представление');
-    }
+    if (this.characteristicName != undefined)
+      this.characteristicMessage.setInnerMessage(true, '');
+    if (this.unitOfMeasurement != undefined)
+      this.unitOfMeasurementMessage.setInnerMessage(true, '');
+    if (this.selectedViewType != undefined)
+      this.viewMessage.setInnerMessage(true, '');
+
     return result;
-  }
-
-
-  checkCategoryExistenceInListAndDB(attributeName:string, unitOfMeasurement:string, parentId:string):boolean {
-
-    for (var i = 0; i < this.characteristicAttributeList.length; i++) {
-      if (this.characteristicAttributeList[i].name === attributeName &&
-        this.characteristicAttributeList[i].unitOfMeasurement === unitOfMeasurement) {
-        this.categoryMessage.setInnerMessage(false, 'В списке уже имеется атрибуты с данными параметрами');
-        return false;
-      }
-    }
-    this.api_Category.checkCategoryAttributeExistence(attributeName, unitOfMeasurement, parentId).subscribe(
-      data => {
-        console.log(data);
-        this.categoryMessage.fillFromJSON(data);
-        return this.categoryMessage.getResult();
-      },
-      error=> {
-        console.log(error);
-        this.categoryMessage.setInnerMessage(false, 'Произошла непредвиденная ошибка, подробнее  смотрите в консоли(F12)');
-      }
-    )
   }
 
   addProductCategoryModelAttributes():void {
@@ -210,14 +194,15 @@ export class CreateCategoryAttributes {
       result = false;
       this.categoryMessage.setInnerMessage(false, 'Необходимо выбрать категорию');
     }
-    else
-      this.categoryMessage.setInnerMessage(true, '');
 
     if (this.characteristicAttributeList.length === 0) {
       result = false;
       this.creationStatus.setInnerMessage(false, 'Необходимо создать хотя бы 1 характеристику')
     }
-    else
+
+    if (this.selectedCategoryName != undefined)
+      this.categoryMessage.setInnerMessage(true, '');
+    if (this.characteristicAttributeList != undefined)
       this.creationStatus.setInnerMessage(true, 'Когда будет создана таблица, перенеси служебное сообщение под нее');
 
     return result;
@@ -230,40 +215,25 @@ export class CreateCategoryAttributes {
       }
   }
 
-  categorySelected():void {
-    this.selectedCategory = this.categoryList.find(category => category.name === this.selectedCategoryName);
-    if (this.characteristicAttributeList.length != 0)
-      this.characteristicAttributeList.splice(0, this.characteristicAttributeList.length);
-    if (this.selectedCategory == undefined)
-      this.categoryMessage.setInnerMessage(false, 'Необходимо выбрать категорию');
-    else
-      this.categoryMessage.setInnerMessage(true, '');
+  /*  checkCategoryExistenceInListAndDB(categoryName:string, parentId:string):boolean {
 
-  }
-
-  attributeDbSelected():void {
-    this.selectedDbAttribute = this.attributeDbList.find(attribute => attribute.name === this.selectedDbAttributeName);
-  }
-
-  viewSelected():void {
-    this.selectedView = this.viewList.find(view => view.type === this.selectedViewType);
-    if (this.selectedView == undefined)
-      this.attributeViewTypeMessage.setInnerMessage(false, 'Необходимо выбрать представление');
-    else
-      this.attributeViewTypeMessage.setInnerMessage(true, '');
-  }
-
-  newAttributeNameChanged():void {
-    if (this.newAttributeName == undefined || this.newAttributeName == '')
-      this.newAttributeNameMessage.setInnerMessage(false, 'Необходимо назвать характеристику');
-    else
-      this.newAttributeNameMessage.setInnerMessage(true, '');
-  }
-
-  newAttributeUnitOfMeasurementChanged():void {
-    if (this.newUnitOfMeasurement == undefined || this.newUnitOfMeasurement == '')
-      this.newAttributeUnitOfMeasurementMessage.setInnerMessage(false, 'Необходимо выбрать единицу измерения');
-    else
-      this.newAttributeUnitOfMeasurementMessage.setInnerMessage(true, '');
-  }
+   if (this.newCategoryList.length != 0) {
+   for (var i = 0; i < this.newCategoryList.length; i++) {
+   if (this.newCategoryList[i].name === categoryName) {
+   this.categoryMessage.setInnerMessage(false, 'В списке уже имеется категория с таким именем');
+   return false;
+   }
+   }
+   }
+   this.api_Category.checkCategoryExistence(parentId, categoryName).subscribe(
+   data => {
+   this.categoryMessage.fillFromJSON(data);
+   return this.categoryMessage.getResult();
+   },
+   error=> {
+   console.log(error);
+   this.categoryMessage.setInnerMessage(false, 'Произошла непредвиденная ошибка, подробнее в смотрите в консоли(F12)');
+   }
+   )
+   }*/
 }
