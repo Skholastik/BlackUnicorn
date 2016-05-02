@@ -1,0 +1,54 @@
+#table_content {
+  font-family: Georgia, serif;
+  float: left;
+
+}
+
+#search_area {
+  width: 95%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+
+  font-family: Bebas Neue, sans-serif;
+  font-size: 1.0em;
+  color: black;
+
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px 40px;
+  color: white;
+  font-family: Verdana, sans-serif;
+  font-size: 1.0em;
+  background-color: rgba(49, 188, 134, 0.8);
+}
+
+tr {
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+}
+
+td{
+  padding: 10px 5px;
+}
+
+tr:hover {
+  background-color: rgba(49, 188, 134, 0.6);
+  color: white;
+  transition: background 0.4s linear;
+}
+
+.evenStyle {
+  background-color: rgba(245, 245, 245, 0.8);
+}
+
+.oddStyle {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+

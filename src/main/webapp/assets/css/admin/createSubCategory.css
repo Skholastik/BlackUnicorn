@@ -1,0 +1,100 @@
+#form_nested_Create_SubCategory {
+  float:left;
+  margin:0 20px 20px;
+}
+
+#form_nested_Create_SubCategory label {
+  display:block;
+  font-family:Verdana, sans-serif;
+  font-size:25px;
+  color:#000;
+  margin-top:20px;
+}
+
+#select_for_highCategory {
+  width:300px;
+  height:30px;
+  font-family:Verdana, sans-serif;
+  font-size:20px;
+  color:#000;
+}
+
+#input_text_for_SubCategory {
+  display:block;
+  width:350px;
+  height:30px;
+  font-family:Verdana, sans-serif;
+  font-size:23px;
+  color:#000;
+}
+
+#sub_Category_Inputs_List {
+  display:inline-block;
+  text-align:center;
+  font-family:Verdana, sans-serif;
+  font-size:15px;
+  color:#FFF;
+  background-color:rgba(27,168,237,0.8);
+  margin:5px 3px 5px 0;
+  padding:10px 30px;
+}
+
+#containerForPic {
+  float:right;
+  display:inline-block;
+  cursor:pointer;
+  -webkit-transition:left .4s ease-in-out;
+  -moz-transition:left .4s ease-in-out;
+  -ms-transition:left .4s ease-in-out;
+  -o-transition:left .4s ease-in-out;
+  transition:left .4s ease-in-out;
+}
+
+#containerForPic :hover {
+  background-color:#FFF;
+}
+
+#form_nested_Create_SubCategory button {
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  font-family:Verdana, sans-serif;
+  font-size:15px;
+  color:#FFF;
+  background-color:rgba(49,188,134,0.8);
+  cursor:pointer;
+}
+
+#add_SubCategory_To_List {
+  margin-bottom:10px;
+  padding:10px 20px;
+}
+
+#create_SubCategory {
+  margin:10px 0 30px;
+  padding:10px 20px;
+}
+
+#sub_Category_Error,#high_Category_Error {
+  display:block;
+  font-family:Verdana, sans-serif;
+  font-size:15px;
+  color:red;
+}
+
+#SubCategory_Creating_Status {
+  float:left;
+  display:block;
+  font-family:Verdana, sans-serif;
+  font-size:25px;
+  color:#FFF;
+  padding:15px 20px;
+}
+
+.creationStatusClassSuccess {
+  background-color:rgba(49,188,134,0.9);
+}
+
+.creationStatusClassError {
+  background-color:rgba(188,30,0,0.7);
+}

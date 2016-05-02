@@ -1,0 +1,23 @@
+
+<div id="table_content">
+  <input type="text" id="search_area" placeholder="Введите слово для поиска">
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#category of categoryList; #ev = even; #od=odd"
+        [ngClass]="{evenStyle:ev,oddStyle:od}"
+        (click)="navigate(category)">
+      <td>{{category.id}}</td>
+      <td>{{category.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
